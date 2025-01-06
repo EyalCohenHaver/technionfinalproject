@@ -40,12 +40,12 @@ jobs:
 
             # Download and Install Kind
             echo "Installing Kind..."
-            curl -Lo /usr/local/bin/kind https://kind.sigs.k8s.io/dl/latest/kind-linux-amd64
+            sudo curl -Lo /usr/local/bin/kind https://kind.sigs.k8s.io/dl/latest/kind-linux-amd64
             sudo chmod +x /usr/local/bin/kind
 
             # Install kubectl
             echo "Installing kubectl..."
-            curl -LO "https://dl.k8s.io/release/$(curl -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+            sudo curl -LO "https://dl.k8s.io/release/$(curl -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
             sudo chmod +x kubectl
             sudo mv kubectl /usr/local/bin/kubectl
 
