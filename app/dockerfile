@@ -1,0 +1,16 @@
+FROM python:slim
+
+WORKDIR /app
+
+COPY .  .
+
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+ENV AWS_ACCESS_KEY_ID=
+ENV AWS_SECRET_ACCESS_KEY=
+
+RUN python3 -m pip install -r requirements.txt
+
+EXPOSE 5000
+
+CMD ["flask", "run", "--debug"]
