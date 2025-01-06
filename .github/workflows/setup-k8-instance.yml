@@ -10,7 +10,7 @@ on:
 
 jobs:
   setup-kind-cluster:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       # Step 1: Clone Repository
