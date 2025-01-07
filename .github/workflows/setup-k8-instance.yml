@@ -87,7 +87,7 @@ jobs:
 
             # Install git
             echo "Installing git..."
-            sudo yum install git
+            sudo yum install -y git
             
             # Git clone project repo
             echo "Cloning git repo..."
