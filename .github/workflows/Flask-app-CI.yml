@@ -20,7 +20,7 @@ jobs:
 
       # Step 3: Build docker image
       - run: cd app
-      - run: docker build -t eyalcohenhaver/technionfinalproject .
+      - run: sudo docker build -t eyalcohenhaver/technionfinalproject .
 
       # Step 4: Push docker image
-      - run: docker push eyalcohenhaver/technionfinalproject
+      - run: sudo docker push eyalcohenhaver/technionfinalproject
