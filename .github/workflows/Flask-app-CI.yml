@@ -24,11 +24,11 @@ jobs:
 
       # Step 3: Build docker image
       - run: cd app
-      - run: sudo docker build -t eyalcohenhaver/technionfinalproject .
-
       # LOGS:
       - run: pwd
       - run: ls
+
+      - run: sudo docker build -t eyalcohenhaver/technionfinalproject .
 
       # Step 4: Push docker image
       - run: sudo docker push eyalcohenhaver/technionfinalproject
