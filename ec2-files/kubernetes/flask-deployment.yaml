@@ -14,20 +14,19 @@ spec:
     spec:
       containers:
       - name: flask-app
-        image: my-flask-app:latest
+        image: your-docker-repo/flask-app
         ports:
         - containerPort: 5000
         env:
-        - name: MYSQL_HOST
-          value: mysql
-        - name: MYSQL_DATABASE
-          value: <your-database-name> #TODO
+        - name: AWS_ACCESS_KEY_ID
+          value: "YOUR_AWS_ACCESS_KEY"
+        - name: AWS_SECRET_ACCESS_KEY
+          value: "YOUR_AWS_SECRET_KEY"
         - name: MYSQL_USER
-          value: root
+          value: "db_user"
         - name: MYSQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql-secret
-              key: mysql-root-password
-        - name: S3_BUCKET
-          value: <your-s3-bucket-name> #TODO
+          value: "db_password"
+        - name: MYSQL_HOST
+          value: "db_host"
+        - name: MYSQL_DB
+          value: "db_name"
