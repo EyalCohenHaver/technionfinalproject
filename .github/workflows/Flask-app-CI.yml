@@ -1,0 +1,89 @@
+name: CI Pipeline For Flusk App
+run-name: CI Pipeline For Flusk App
+
+
+jobs:
+  setup-kind-cluster:
+    runs-on: self-hosted
+
+    steps:
+      # Step 1: Clone Repository
+      - name: Clone Repository Files
+        uses: actions/checkout@v3
+
+      # Step 2: Install Dependencies
+      - name: Install Docker
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ inputs.EC2_IP }}
+          username: ec2-user
+          key: ${{ secrets.SSH_KEY }}
+          port: 22
+          script: |
+            # System update to ensure latest packages
+            echo "Updating system packages..."
+            sudo yum update -y
+
+            # Install Docker
+            echo "Installing Docker..."
+            sudo yum install -y docker
+            sudo systemctl enable docker --now
+            sudo usermod -aG docker $USER
+            newgrp docker
+            sudo chmod 666 /var/run/docker.sock
+
+            # Download and Install Kind
+            echo "Installing Kind..."
+            sudo curl -Lo /usr/local/bin/kind https://kind.sigs.k8s.io/dl/latest/kind-linux-amd64
+            sudo chmod +x /usr/local/bin/kind
+
+            # Install kubectl
+            echo "Installing kubectl..."
+            cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+            [kubernetes]
+            name=Kubernetes
+            baseurl=https://pkgs.k8s.io/core:/stable:/v1.32/rpm/
+            enabled=1
+            gpgcheck=1
+            gpgkey=https://pkgs.k8s.io/core:/stable:/v1.32/rpm/repodata/repomd.xml.key
+            EOF
+            sudo yum install -y kubectl
+
+            # Check kubectl installation
+            echo "Checking kubectl version..."
+            kubectl version --client
+
+            # Define and create Kind Cluster
+            echo "Creating Kind Cluster with custom ports..."
+            kind create cluster --name my-kind-cluster --config - <<EOF
+            kind: Cluster
+            apiVersion: kind.x-k8s.io/v1alpha4
+            nodes:
+            - role: control-plane
+              extraPortMappings:
+              - containerPort: 80
+                hostPort: 80
+              - containerPort: 443
+                hostPort: 443
+              - containerPort: 30080
+                hostPort: 30080
+              - containerPort: 30081
+                hostPort: 30081
+              - containerPort: 30082
+                hostPort: 30082
+              - containerPort: 32371 # Exposing Flask app
+                hostPort: 32371
+            EOF
+
+            # Verify Kind cluster is healthy
+            echo "Verifying the cluster info..."
+            kubectl cluster-info --context kind-my-kind-cluster
+
+            # Install git
+            echo "Installing git..."
+            sudo yum install -y git
+            
+            # Git clone project repo
+            echo "Cloning git repo..."
+            git clone https://github.com/EyalCohenHaver/technionfinalproject.git
+

@@ -5,7 +5,6 @@ resource "aws_instance" "python_app" {
   key_name               = "vockey"
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
   subnet_id = aws_subnet.public_subnet.id
-  #user_data = file("./ec2_user_data.sh")
 associate_public_ip_address = true
   tags = {
     Name = "python_app"
@@ -19,7 +18,7 @@ resource "aws_instance" "cicd_ec2" {
   key_name               = "vockey"
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
   subnet_id = aws_subnet.public_subnet.id
-  #user_data = file("./cicd_user_data.sh")
+  user_data = file("./ec2_user_data.sh")
 associate_public_ip_address = true
   tags = {
     Name = "cicd_ec2"
