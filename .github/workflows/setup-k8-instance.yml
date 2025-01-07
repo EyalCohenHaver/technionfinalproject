@@ -84,3 +84,17 @@ jobs:
             # Verify Kind cluster is healthy
             echo "Verifying the cluster info..."
             kubectl cluster-info --context kind-my-kind-cluster
+
+            # Install git
+            echo "Installing git..."
+            sudo yum install -y git
+            
+            # Git clone project repo
+            echo "Cloning git repo..."
+            git clone https://github.com/EyalCohenHaver/technionfinalproject.git
+
+            # Setting up pods
+            echo "Setting up pods..."
+            cd technionfinalproject/ec2-files/kubernetes/
+            kubectl apply -f flask-deployment.yaml
+            kubectl apply -f flask-service.yaml
