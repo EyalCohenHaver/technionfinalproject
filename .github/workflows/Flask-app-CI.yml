@@ -17,18 +17,7 @@ jobs:
 
       # Step 2: Login to docker
       - run: docker login --username ${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD }}
-
-      # LOGS:
-      - run: pwd
-      - run: ls
-
-      # Step 3: Build docker image
-      - run: cd /app
-      # LOGS:
-      - run: pwd
-      - run: ls
-
-      - run: sudo docker build -t eyalcohenhaver/technionfinalproject .
+      - run: sudo docker build -t eyalcohenhaver/technionfinalproject ./app
 
       # Step 4: Push docker image
       - run: sudo docker push eyalcohenhaver/technionfinalproject
