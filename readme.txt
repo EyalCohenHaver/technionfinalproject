@@ -16,3 +16,7 @@ ci
 cd
 |---cd for python app -TODO
 |---cd for terraform -TODO
+
+
+aws credentials
+SSH_KEY secret
