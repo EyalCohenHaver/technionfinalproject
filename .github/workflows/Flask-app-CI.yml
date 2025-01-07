@@ -23,7 +23,7 @@ jobs:
       - run: ls
 
       # Step 3: Build docker image
-      - run: cd app
+      - run: cd /app
       # LOGS:
       - run: pwd
       - run: ls
