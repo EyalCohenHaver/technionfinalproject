@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - 'terraform/**'
+      - '!terraform/menual.tf'
 
 jobs:
   setup-kind-cluster:
