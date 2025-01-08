@@ -23,4 +23,4 @@ jobs:
       - run: cd terraform && sudo terraform init
 
       # Step 4: Push docker image
-      - run: cd terraform && sudo terraform apply -auto-approve
+      - run: sudo terraform apply -auto-approve
