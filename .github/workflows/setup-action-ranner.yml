@@ -1,5 +1,5 @@
-name: Deploy Kind Cluster on EC2 Instance
-run-name: Deploying Kind Cluster on ${{ inputs.EC2_IP }}
+name: Setup CICD EC2 runner
+run-name: Deploying EC2 Runner on ${{ inputs.EC2_IP }}
 
 on:
   workflow_dispatch:
