@@ -9,7 +9,7 @@ on:
         required: true
 
 jobs:
-  Deploying EC2 Runner:
+  Deploying-EC2-Runner:
     runs-on: ubuntu-latest
 
     steps:
