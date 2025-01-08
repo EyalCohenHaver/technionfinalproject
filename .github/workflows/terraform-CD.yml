@@ -1,0 +1,25 @@
+name: CI Pipeline For Flusk App
+run-name: CI Pipeline For Flusk App
+
+on:
+  push:
+    paths:
+      - 'terraform/**'
+
+jobs:
+  setup-kind-cluster:
+    runs-on: self-hosted
+
+    steps:
+      # Step 1: Clone Repository
+      - name: Clone Repository Files
+        uses: actions/checkout@v3
+
+      #Step 2: Cradential setup
+      
+
+      # Step 3: terraform init
+      - run: cd terraform && sudo terraform init
+
+      # Step 4: Push docker image
+      - run: cd terraform && sudo terraform apply -auto-approve
