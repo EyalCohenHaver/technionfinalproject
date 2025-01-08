@@ -18,5 +18,8 @@ cd
 |---cd for terraform -TODO
 
 
-aws credentials
-SSH_KEY secret
+update aws credentials
+update secrets
+terraform apply
+cicd setup job
+kubernetes job
