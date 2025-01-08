@@ -47,5 +47,5 @@ jobs:
             touch script.sh
             echo "sudo -u ec2-user ./run.sh" > script.sh
             chmod +x script.sh
-            nohup sudo -u ec2-user ./script.sh
+            nohup sudo -u ec2-user ./script.sh &
             exit
