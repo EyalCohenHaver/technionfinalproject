@@ -9,7 +9,7 @@ on:
         required: true
 
 jobs:
-  setup-kind-cluster:
+  Deploying EC2 Runner:
     runs-on: ubuntu-latest
 
     steps:
@@ -43,4 +43,4 @@ jobs:
             sudo yum install -y libicu
             sudo -u ec2-user ./config.sh --url https://github.com/EyalCohenHaver/technionfinalproject --token ${{ secrets.GIT_RUNNER_TOKEN }}
 
-      run: ssh -i ${{ secrets.SSH_KEY }} ${{ inputs.EC2_IP }}@ec2-user -f 'sudo -u ec2-user ./run.sh'
+      - run: ssh -i ${{ secrets.SSH_KEY }} ${{ inputs.EC2_IP }}@ec2-user -f 'sudo -u ec2-user ./run.sh'
