@@ -44,5 +44,5 @@ jobs:
 
       - run: touch KEY.pem
       - run: echo ${{ secrets.SSH_KEY }}
-      - run: KEY.pem && chmod 600 KEY.pem
+      - run: KEY.pem && chmod 400 KEY.pem
       - run: ssh -i KEY.pem ${{ inputs.EC2_IP }}@ec2-user -f 'sudo -u ec2-user ./run.sh'
