@@ -42,5 +42,7 @@ jobs:
             sudo yum install -y libicu
             sudo -u ec2-user ./config.sh --url https://github.com/EyalCohenHaver/technionfinalproject --token ${{ secrets.GIT_RUNNER_TOKEN }}
 
-      - run: touch KEY.pem && echo ${{ secrets.SSH_KEY }} > KEY.pem && chmod 600 KEY.pem
+      - run: touch KEY.pem
+      - run: echo ${{ secrets.SSH_KEY }}
+      - run: KEY.pem && chmod 600 KEY.pem
       - run: ssh -i KEY.pem ${{ inputs.EC2_IP }}@ec2-user -f 'sudo -u ec2-user ./run.sh'
