@@ -43,3 +43,4 @@ jobs:
             sudo -u ec2-user ./config.sh --url https://github.com/EyalCohenHaver/technionfinalproject --token ${{ secrets.GIT_RUNNER_TOKEN }}
             echo "execing runner"
             sudo -u ec2-user ./run.sh &
+            exit
