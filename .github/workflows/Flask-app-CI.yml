@@ -7,7 +7,7 @@ on:
       - 'app/**'
 
 jobs:
-  setup-kind-cluster:
+  CI Pipeline For Flusk App:
     runs-on: self-hosted
 
     steps:

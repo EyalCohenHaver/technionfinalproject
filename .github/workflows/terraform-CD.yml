@@ -8,7 +8,7 @@ on:
       - '!terraform/menual.tf'
 
 jobs:
-  setup-kind-cluster:
+  CD Terraform Pipeline:
     runs-on: self-hosted
 
     steps:

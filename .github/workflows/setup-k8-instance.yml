@@ -98,3 +98,5 @@ jobs:
             cd technionfinalproject/ec2-files/kubernetes/
             kubectl apply -f flask-deployment.yaml
             kubectl apply -f flask-service.yaml
+            kubectl apply -f mysql-deployment.yaml
+            kubectl apply -f mysql-service.yaml
